@@ -31,8 +31,5 @@ int main()
 	int size = sizeof(arr) / sizeof(arr[0]);
 	int n = -60;
 	findPair(arr, size, n);
-	cout << endl;
-	n = 20;
-	findPair(arr, size, n);
 	return 0;
 }
