@@ -1,0 +1,37 @@
+class Solution {
+    private:
+    bool solve(vector<int>&weights,int days,int maxcapacity){
+       int currentdays=1,currentcapacity=0;
+       for(auto weight:weights){
+           if(weight>maxcapacity)return false;
+           if(weight+currentcapacity>maxcapacity){
+               currentdays+=1;
+               if(currentdays>days)return false;
+               currentcapacity=weight;
+           }
+           else{
+               currentcapacity+=weight;
+           }
+       }
+       return true;
+    }
+public:
+    int shipWithinDays(vector<int>& weights, int days) {
+        int sumwt=0,maxwt=0;
+        for(auto it:weights){
+            sumwt+=it;
+            maxwt=max(maxwt,it);
+        }
+        int capacity=0;
+        int l=maxwt,h=sumwt;
+        while(l<=h){
+            int mid=l+(h-l)/2;
+            if(solve(weights,days,mid)){
+                capacity=mid;
+                h=mid-1;
+            }
+            else l=mid+1;
+        }
+        return capacity;
+    }
+};
