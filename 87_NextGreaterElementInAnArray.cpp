@@ -1,18 +1,23 @@
-public class Solution
+pclass Solution
 {
-   public static void main(String[] args){
-      Scanner in = new Scanner(System.in);
-      int testCases = Integer.parseInt(in.nextLine());
-      while(testCases>0){
-         String pattern = in.nextLine();
-          try{
-              Pattern p = Pattern.compile(pattern);
-              System.out.println("Valid");
-          }catch(Throwable t){
-              System.out.println("Invalid");
-          }
-          testCases--;
-             //Write your code
-      }
-   }
-}
+    public:
+    //Function to find the next greater element for each element of the array.
+    vector<long long> nextLargerElement(vector<long long> arr, int n){
+        // Your code here
+       vector<long long>ans(n);
+       stack<long long>st;
+       for(int i=n-1;i>=0;i--){
+           while(!st.empty() && st.top()<=arr[i]){
+               st.pop();
+           }
+           if(st.empty()){
+               ans[i]=-1;
+           }
+           else {
+               ans[i]=st.top();
+           }
+           st.push(arr[i]);
+       }
+       return ans;
+    }
+};
